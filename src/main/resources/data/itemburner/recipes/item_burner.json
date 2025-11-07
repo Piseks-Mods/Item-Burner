@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " b ",
+    "ili",
+    " i "
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:blaze_powder"
+    },
+    "i": {
+      "item": "minecraft:iron_bars"
+    },
+    "l": {
+      "item": "minecraft:lapis_block"
+    }
+  },
+  "result": {
+    "item": "itemburner:burner"
+  }
+}
