@@ -1,2 +1,4 @@
-{  "creativetab.item_burner_tab": "Item Burner"
+{
+  "block.itemburner.burner": "Item Burner",
+  "creativetab.item_burner_tab": "Item Burner"
 }

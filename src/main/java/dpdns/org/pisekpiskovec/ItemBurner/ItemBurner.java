@@ -1,6 +1,7 @@
 package dpdns.org.pisekpiskovec.ItemBurner;
 
 import com.mojang.logging.LogUtils;
+import dpdns.org.pisekpiskovec.ItemBurner.block.ModBlocks;
 import dpdns.org.pisekpiskovec.ItemBurner.item.ModCreativeModTabs;
 import dpdns.org.pisekpiskovec.ItemBurner.item.ModItems;
 import net.minecraftforge.api.distmarker.Dist;
@@ -27,6 +28,7 @@ public class ItemBurner {
     IEventBus modEventBus = context.getModEventBus();
 
     ModItems.register(modEventBus);
+    ModBlocks.register(modEventBus);
     ModCreativeModTabs.register(modEventBus);
 
     modEventBus.addListener(this::commonSetup);

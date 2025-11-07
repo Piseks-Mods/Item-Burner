@@ -23,6 +23,7 @@ public class ModCreativeModTabs {
                   .title(Component.translatable("creativetab.item_burner_tab"))
                   .displayItems(
                       (pParameters, pOutput) -> {
+                        pOutput.accept(ModBlocks.BURNER.get());
                       })
                   .build());
 
