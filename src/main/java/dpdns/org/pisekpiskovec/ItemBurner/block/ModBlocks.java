@@ -18,7 +18,7 @@ public class ModBlocks {
       DeferredRegister.create(ForgeRegistries.BLOCKS, ItemBurner.MOD_ID);
 
   public static final RegistryObject<Block> BURNER =
-      registerBlock("burner", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+      registerBlock("burner", () -> new ItemBurnerBlock(BlockBehaviour.Properties.copy(Blocks.ENCHANTING_TABLE)));
 
   private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
     RegistryObject<T> toReturn = BLOCKS.register(name, block);
