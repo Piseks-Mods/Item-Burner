@@ -24,6 +24,7 @@ public class ModCreativeModTabs {
                   .displayItems(
                       (pParameters, pOutput) -> {
                         pOutput.accept(ModBlocks.BURNER.get());
+                        pOutput.accept(ModItems.CHRONOFLUX_BUCKET.get());
                       })
                   .build());
 

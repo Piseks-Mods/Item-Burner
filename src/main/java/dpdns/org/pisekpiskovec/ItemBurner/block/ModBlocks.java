@@ -1,12 +1,14 @@
 package dpdns.org.pisekpiskovec.ItemBurner.block;
 
 import dpdns.org.pisekpiskovec.ItemBurner.ItemBurner;
+import dpdns.org.pisekpiskovec.ItemBurner.fluid.ModFluids;
 import dpdns.org.pisekpiskovec.ItemBurner.item.ModItems;
 import java.util.function.Supplier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,6 +21,14 @@ public class ModBlocks {
 
   public static final RegistryObject<Block> BURNER =
       registerBlock("burner", () -> new ItemBurnerBlock(BlockBehaviour.Properties.copy(Blocks.ENCHANTING_TABLE)));
+
+  public static final RegistryObject<LiquidBlock> CHRONOFLUX_BLOCK =
+      BLOCKS.register(
+          "chronoflux_block",
+          () ->
+              new LiquidBlock(
+                  ModFluids.SOURCE_CHRONOFLUX,
+                  BlockBehaviour.Properties.copy(Blocks.WATER).noCollission().strength(100f).noLootTable()));
 
   private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
     RegistryObject<T> toReturn = BLOCKS.register(name, block);
