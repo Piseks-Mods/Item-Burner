@@ -2,6 +2,7 @@ package dpdns.org.pisekpiskovec.ItemBurner;
 
 import com.mojang.logging.LogUtils;
 import dpdns.org.pisekpiskovec.ItemBurner.block.ModBlocks;
+import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ModBlockEntities;
 import dpdns.org.pisekpiskovec.ItemBurner.fluid.ModFluidTypes;
 import dpdns.org.pisekpiskovec.ItemBurner.fluid.ModFluids;
 import dpdns.org.pisekpiskovec.ItemBurner.item.ModCreativeModTabs;
@@ -30,6 +31,7 @@ public class ItemBurner {
     IEventBus modEventBus = context.getModEventBus();
 
     ModItems.register(modEventBus);
+    ModBlockEntities.register(modEventBus);
     ModBlocks.register(modEventBus);
     ModFluidTypes.register(modEventBus);
     ModFluids.register(modEventBus);
