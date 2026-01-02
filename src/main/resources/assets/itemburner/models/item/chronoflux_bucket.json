@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "itemburner:item/chronoflux_bucket"
+  }
+}
