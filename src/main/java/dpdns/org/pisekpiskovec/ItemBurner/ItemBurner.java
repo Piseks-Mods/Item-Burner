@@ -7,6 +7,9 @@ import dpdns.org.pisekpiskovec.ItemBurner.fluid.ModFluidTypes;
 import dpdns.org.pisekpiskovec.ItemBurner.fluid.ModFluids;
 import dpdns.org.pisekpiskovec.ItemBurner.item.ModCreativeModTabs;
 import dpdns.org.pisekpiskovec.ItemBurner.item.ModItems;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.ItemBurnerScreen;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.ModMenuTypes;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -36,6 +39,7 @@ public class ItemBurner {
     ModFluidTypes.register(modEventBus);
     ModFluids.register(modEventBus);
     ModCreativeModTabs.register(modEventBus);
+    ModMenuTypes.register(modEventBus);
 
     modEventBus.addListener(this::commonSetup);
 
@@ -57,6 +61,8 @@ public class ItemBurner {
   @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
   public static class ClientModEvents {
     @SubscribeEvent
-    public static void onClientSetup(FMLClientSetupEvent event) {}
+    public static void onClientSetup(FMLClientSetupEvent event) {
+      MenuScreens.register(ModMenuTypes.ITEM_BURNER_MENU.get(), ItemBurnerScreen::new);
+    }
   }
 }

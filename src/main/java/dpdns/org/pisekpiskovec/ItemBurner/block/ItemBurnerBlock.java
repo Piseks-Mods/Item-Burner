@@ -23,65 +23,63 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class ItemBurnerBlock extends BaseEntityBlock {
-  public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 16, 16);
-
-  public ItemBurnerBlock(Properties pProperties) {
-    super(pProperties);
-  }
-
-  @Override
-  public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-    return SHAPE;
-  }
-
-  @Override
-  public RenderShape getRenderShape(BlockState pState) {
-    return RenderShape.MODEL;
-  }
-
-  @Override
-  public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
-    if (pState.getBlock() != pNewState.getBlock()) {
-      BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-      if (blockEntity instanceof ItemBurnerBlockEntity) {
-        ((ItemBurnerBlockEntity) blockEntity).drops();
-      }
+    public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 16, 16);
+    
+    public ItemBurnerBlock(Properties pProperties) {
+        super(pProperties);
     }
-
-    super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
-  }
-
-  @Override
-  public InteractionResult use(
-      BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-    if (!pLevel.isClientSide()) {
-      BlockEntity entity = pLevel.getBlockEntity(pPos);
-      if (entity instanceof ItemBurnerBlockEntity) {
-        NetworkHooks.openScreen(((ServerPlayer) pPlayer), (ItemBurnerBlockEntity) entity, pPos);
-      } else {
-        throw new IllegalStateException("Container provider is missing!");
-      }
+    
+    @Override
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return SHAPE;
     }
-    return InteractionResult.sidedSuccess(pLevel.isClientSide());
-  }
-
-  @Override
-  public @Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-    return new ItemBurnerBlockEntity(pPos, pState);
-  }
-
-  @Override
-  public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(
-      Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-    if (pLevel.isClientSide()) {
-      return null;
+    
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
     }
-
-    return createTickerHelper(
-        pBlockEntityType,
-        ModBlockEntities.ITEM_BURNER_BE.get(),
-        (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
-
-    return super.getTicker(pLevel, pState, pBlockEntityType);
-  }
+    
+    @Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
+        if (pState.getBlock() != pNewState.getBlock()) {
+            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+            if (blockEntity instanceof ItemBurnerBlockEntity) {
+                ((ItemBurnerBlockEntity) blockEntity).drops();
+            }
+        }
+        
+        super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
+    }
+    
+    @Override
+    public InteractionResult use(
+            BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        if (!pLevel.isClientSide()) {
+            BlockEntity entity = pLevel.getBlockEntity(pPos);
+            if (entity instanceof ItemBurnerBlockEntity) {
+                NetworkHooks.openScreen(((ServerPlayer) pPlayer), (ItemBurnerBlockEntity) entity, pPos);
+            } else {
+                throw new IllegalStateException("Container provider is missing!");
+            }
+        }
+        return InteractionResult.sidedSuccess(pLevel.isClientSide());
+    }
+    
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return new ItemBurnerBlockEntity(pPos, pState);
+    }
+    
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(
+            Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        if (pLevel.isClientSide()) {
+            return null;
+        }
+        
+        return createTickerHelper(
+                pBlockEntityType,
+                ModBlockEntities.ITEM_BURNER_BE.get(),
+                (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
+    }
 }
