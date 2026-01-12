@@ -198,7 +198,7 @@ public class ItemBurnerBlockEntity extends BlockEntity implements MenuProvider {
       // Item is stackable
       int maxStack = stack.getMaxStackSize();
       int currentStack = stack.getCount();
-      baseMb = (CONFIGURED_SLOT_OUTPUT * currentStack) / maxStack;
+      baseMb = (CONFIGURED_SLOT_OUTPUT * 1) / maxStack;
     }
 
     // Add enchantment bonus

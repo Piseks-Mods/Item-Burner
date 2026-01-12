@@ -5,13 +5,20 @@ import dpdns.org.pisekpiskovec.ItemBurner.ItemBurner;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 
 public class ItemBurnerScreen extends AbstractContainerScreen<ItemBurnerMenu> {
   private static final ResourceLocation TEXTURE = new ResourceLocation(ItemBurner.MOD_ID, "textures/gui/burner.png");
+  private static final int FLUID_TANK_X = 112; // X position relative to GUI
+  private static final int FLUID_TANK_Y = 17; // Y position relative to GUI
+  private static final int FLUID_TANK_WIDTH = 26;
+  private static final int FLUID_TANK_HEIGHT = 54;
 
   public ItemBurnerScreen(ItemBurnerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
     super(pMenu, pPlayerInventory, pTitle);
@@ -47,14 +54,47 @@ public class ItemBurnerScreen extends AbstractContainerScreen<ItemBurnerMenu> {
     if (!fluidStack.isEmpty()) {
       int fluidAmount = fluidStack.getAmount();
       int capacity = menu.getFluidCapacity();
-      int fluidHeight = (fluidAmount * 52) / capacity; // 52 pixels is the height of the tank
+      int fluidHeight = (fluidAmount * FLUID_TANK_HEIGHT) / capacity; // Calculate the height of fluid to render
 
-      // TODO: Renter fluid texture
-      int tankX = x + 152;
-      int tankY = y + 11 + (52 - fluidHeight);
+      if (fluidHeight > 0) {
+        // Get the fluid's still texture
+        IClientFluidTypeExtensions fluidTypeExtensions = IClientFluidTypeExtensions.of(fluidStack.getFluid());
+        ResourceLocation stillTexture = fluidTypeExtensions.getStillTexture();
 
-      // Draw a blue-ish rectangle representing the fluid
-      guiGraphics.fill(tankX, tankY, tankX + 16, tankY + fluidHeight, 0xFFADD3FE);
+        if (stillTexture != null) {
+          // Get the texture from the block atlas
+          TextureAtlasSprite sprite = minecraft.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(stillTexture);
+
+          // Position where fluid rendering starts (from bottom)
+          int tankX = x + FLUID_TANK_X;
+          int tankY = y + FLUID_TANK_Y + (FLUID_TANK_HEIGHT - fluidHeight);
+
+          // Get tint color from fluid type
+          int tintColor = fluidTypeExtensions.getTintColor();
+
+          // Extract RGBA from tint color
+          float red = ((tintColor >> 16) & 0xFF) / 255f;
+          float green = ((tintColor >> 8) & 0xFF) / 255f;
+          float blue = (tintColor & 0xFF) / 255f;
+          float alpha = ((tintColor >> 24) & 0xFF) / 255f;
+
+          RenderSystem.setShaderColor(red, green, blue, alpha);
+          RenderSystem.enableBlend();
+
+          // Render the fluid texture tiled vertically
+          int yOffset = 0;
+          while (yOffset < fluidHeight) {
+            int remainingHeight = Math.min(16, fluidHeight - yOffset);
+
+            guiGraphics.blit(tankX, tankY + yOffset, 0, FLUID_TANK_WIDTH, remainingHeight, sprite);
+
+            yOffset += 16;
+          }
+
+          RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+          RenderSystem.disableBlend();
+        }
+      }
     }
   }
 
@@ -67,16 +107,20 @@ public class ItemBurnerScreen extends AbstractContainerScreen<ItemBurnerMenu> {
     // Render fluid tank tooltip
     int x = (width - imageWidth) / 2;
     int y = (height - imageHeight) / 2;
-    if (mouseX >= x + 152 && mouseX <= x + 168 && mouseX >= y + 11 && mouseY <= y + 63) {
+    int tankX = x + FLUID_TANK_X;
+    int tankY = y + FLUID_TANK_Y;
+
+    if (mouseX >= tankX
+        && mouseX <= tankX + FLUID_TANK_WIDTH
+        && mouseY >= tankY
+        && mouseY <= tankY + FLUID_TANK_HEIGHT) {
       FluidStack fluidStack = menu.getFluidStack();
       if (!fluidStack.isEmpty()) {
-        guiGraphics.renderTooltip(
-            this.font,
-            Component.literal(fluidStack.getAmount() + " / " + menu.getFluidCapacity() + " mB"),
-            mouseX,
-            mouseY);
+        Component fluidName = fluidStack.getDisplayName();
+        Component amount = Component.literal(fluidStack.getAmount() + " / " + menu.getFluidCapacity() + " mB");
+        guiGraphics.renderComponentTooltip(this.font, java.util.List.of(fluidName, amount), mouseX, mouseY);
       } else {
-        guiGraphics.renderTooltip(this.font, Component.literal("Empty"), mouseX, mouseY);
+        guiGraphics.renderTooltip(this.font, Component.translatable("gui.itemburner.tank.empty"), mouseX, mouseY);
       }
     }
   }
