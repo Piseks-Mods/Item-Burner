@@ -64,6 +64,7 @@ public class ItemBurnerBlockEntity extends BlockEntity implements MenuProvider {
   protected final ContainerData data;
   private int progress = 0;
   private int maxProgress = 78;
+  private int fluidAmount = 0;
 
   public ItemBurnerBlockEntity(BlockPos pPos, BlockState pBlockState) {
     super(ModBlockEntities.ITEM_BURNER_BE.get(), pPos, pBlockState);
@@ -75,6 +76,7 @@ public class ItemBurnerBlockEntity extends BlockEntity implements MenuProvider {
             return switch (pIndex) {
               case 0 -> ItemBurnerBlockEntity.this.progress;
               case 1 -> ItemBurnerBlockEntity.this.maxProgress;
+              case 2 -> ItemBurnerBlockEntity.this.fluidAmount;
               default -> 0;
             };
           }
@@ -84,12 +86,13 @@ public class ItemBurnerBlockEntity extends BlockEntity implements MenuProvider {
             switch (pIndex) {
               case 0 -> ItemBurnerBlockEntity.this.progress = pValue;
               case 1 -> ItemBurnerBlockEntity.this.maxProgress = pValue;
+              case 2 -> ItemBurnerBlockEntity.this.fluidAmount = pValue;
             }
           }
 
           @Override
           public int getCount() {
-            return 2;
+            return 3;
           }
         };
   }
@@ -166,6 +169,9 @@ public class ItemBurnerBlockEntity extends BlockEntity implements MenuProvider {
     } else {
       resetProgress();
     }
+
+    // Sync fluid amount to client
+    this.fluidAmount = this.fluidTank.getFluidAmount();
   }
 
   private void resetProgress() {

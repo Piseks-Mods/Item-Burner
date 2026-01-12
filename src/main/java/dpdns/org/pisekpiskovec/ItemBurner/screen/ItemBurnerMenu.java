@@ -2,6 +2,7 @@ package dpdns.org.pisekpiskovec.ItemBurner.screen;
 
 import dpdns.org.pisekpiskovec.ItemBurner.block.ModBlocks;
 import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ItemBurnerBlockEntity;
+import dpdns.org.pisekpiskovec.ItemBurner.fluid.ModFluids;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -55,6 +56,15 @@ public class ItemBurnerMenu extends AbstractContainerMenu {
   }
 
   public FluidStack getFluidStack() {
+    if (this.level.isClientSide()) {
+      // On client side, create FluidStack from synced data
+      int amount = this.data.get(2);
+      if (amount > 0) {
+        return new FluidStack(ModFluids.SOURCE_CHRONOFLUX.get(), amount);
+      }
+      return FluidStack.EMPTY;
+    }
+    // On server side, get from block entity
     return this.blockEntity.getFluidTank().getFluid();
   }
 
