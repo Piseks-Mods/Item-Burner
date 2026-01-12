@@ -63,7 +63,7 @@ public class ItemBurnerBlockEntity extends BlockEntity implements MenuProvider {
 
   protected final ContainerData data;
   private int progress = 0;
-  private int maxProgress = 78;
+  private int maxProgress = 22;
   private int fluidAmount = 0;
 
   public ItemBurnerBlockEntity(BlockPos pPos, BlockState pBlockState) {

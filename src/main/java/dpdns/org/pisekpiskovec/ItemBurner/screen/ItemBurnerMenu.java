@@ -20,7 +20,7 @@ public class ItemBurnerMenu extends AbstractContainerMenu {
   private final ContainerData data;
 
   public ItemBurnerMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-    this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+    this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
   }
 
   public ItemBurnerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
@@ -58,6 +58,10 @@ public class ItemBurnerMenu extends AbstractContainerMenu {
   public FluidStack getFluidStack() {
     if (this.level.isClientSide()) {
       // On client side, create FluidStack from synced data
+      // Check if we have enough data slots before accessing
+      if (this.data == null || this.data.getCount() < 3) {
+        return FluidStack.EMPTY;
+      }
       int amount = this.data.get(2);
       if (amount > 0) {
         return new FluidStack(ModFluids.SOURCE_CHRONOFLUX.get(), amount);
@@ -65,7 +69,10 @@ public class ItemBurnerMenu extends AbstractContainerMenu {
       return FluidStack.EMPTY;
     }
     // On server side, get from block entity
-    return this.blockEntity.getFluidTank().getFluid();
+    if (this.blockEntity != null && this.blockEntity.getFluidTank() != null) {
+      return this.blockEntity.getFluidTank().getFluid();
+    }
+    return FluidStack.EMPTY;
   }
 
   public int getFluidCapacity() {
@@ -79,7 +86,7 @@ public class ItemBurnerMenu extends AbstractContainerMenu {
   // Each time we add a Slot to the container, it automatically increases the slotIndex, which means
   //  0 - 8 = hotbar slots (which will map to the InventoryPlayer slot numbers 0 - 8)
   //  9 - 35 = player inventory slots (which map to the InventoryPlayer slot numbers 9 - 35)
-  // 36 - 37 = TileInventory slots, which map to our TileEntity slot numbers 0 - 1)
+  // 36 - 37 = TileInventory slots, which map to our TileEntity slot numbers 0)
 
   private static final int HOTBAR_SLOT_COUNT = 9;
   private static final int PLAYER_INVENTORY_ROW_COUNT = 3;

@@ -17,8 +17,8 @@ public class ItemBurnerScreen extends AbstractContainerScreen<ItemBurnerMenu> {
   private static final ResourceLocation TEXTURE = new ResourceLocation(ItemBurner.MOD_ID, "textures/gui/burner.png");
   private static final int FLUID_TANK_X = 112; // X position relative to GUI
   private static final int FLUID_TANK_Y = 17; // Y position relative to GUI
-  private static final int FLUID_TANK_WIDTH = 26;
-  private static final int FLUID_TANK_HEIGHT = 54;
+  private static final int FLUID_TANK_WIDTH = 24;
+  private static final int FLUID_TANK_HEIGHT = 52;
 
   public ItemBurnerScreen(ItemBurnerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
     super(pMenu, pPlayerInventory, pTitle);
@@ -50,7 +50,13 @@ public class ItemBurnerScreen extends AbstractContainerScreen<ItemBurnerMenu> {
   }
 
   private void renderFluidTank(GuiGraphics guiGraphics, int x, int y) {
-    FluidStack fluidStack = menu.getFluidStack();
+    FluidStack fluidStack;
+    try {
+      fluidStack = menu.getFluidStack();
+    } catch (Exception e) {
+      // If there's an error getting fluid stack, just return
+      return;
+    }
     if (!fluidStack.isEmpty()) {
       int fluidAmount = fluidStack.getAmount();
       int capacity = menu.getFluidCapacity();
