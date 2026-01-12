@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class ItemBurnerMenu extends AbstractContainerMenu {
@@ -23,7 +24,7 @@ public class ItemBurnerMenu extends AbstractContainerMenu {
 
   public ItemBurnerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
     super(ModMenuTypes.ITEM_BURNER_MENU.get(), pContainerId);
-    checkContainerSize(inv, 2);
+    checkContainerSize(inv, 1);
     blockEntity = ((ItemBurnerBlockEntity) entity);
     this.level = inv.player.level();
     this.data = data;
@@ -36,7 +37,6 @@ public class ItemBurnerMenu extends AbstractContainerMenu {
         .ifPresent(
             iItemHandler -> {
               this.addSlot(new SlotItemHandler(iItemHandler, 0, 56, 17));
-              this.addSlot(new SlotItemHandler(iItemHandler, 1, 112, 17));
             });
 
     addDataSlots(data);
@@ -52,6 +52,14 @@ public class ItemBurnerMenu extends AbstractContainerMenu {
     int progressArrowSize = 24; // Width in pixel of arrow
 
     return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+  }
+
+  public FluidStack getFluidStack() {
+    return this.blockEntity.getFluidTank().getFluid();
+  }
+
+  public int getFluidCapacity() {
+    return this.blockEntity.getFluidTank().getCapacity();
   }
 
   // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
@@ -71,7 +79,7 @@ public class ItemBurnerMenu extends AbstractContainerMenu {
   private static final int VANILLA_FIRST_SLOT_INDEX = 0;
   private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
-  private static final int TE_INVENTORY_SLOT_COUNT = 2; // Number of block's slots
+  private static final int TE_INVENTORY_SLOT_COUNT = 1; // Number of block's slots
 
   @Override
   public ItemStack quickMoveStack(Player playerIn, int pIndex) {
