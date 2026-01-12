@@ -35,8 +35,8 @@ public class ItemBurnerMenu extends AbstractContainerMenu {
         .getCapability(ForgeCapabilities.ITEM_HANDLER)
         .ifPresent(
             iItemHandler -> {
-              this.addSlot(new SlotItemHandler(iItemHandler, 0, 80, 11));
-              this.addSlot(new SlotItemHandler(iItemHandler, 1, 80, 59));
+              this.addSlot(new SlotItemHandler(iItemHandler, 0, 56, 17));
+              this.addSlot(new SlotItemHandler(iItemHandler, 1, 112, 17));
             });
 
     addDataSlots(data);
