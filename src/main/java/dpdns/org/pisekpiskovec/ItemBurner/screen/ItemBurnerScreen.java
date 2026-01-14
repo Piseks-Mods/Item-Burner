@@ -40,12 +40,19 @@ public class ItemBurnerScreen extends AbstractContainerScreen<ItemBurnerMenu> {
     guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
     renderProgressArrow(guiGraphics, x, y);
+    renderBurning(guiGraphics, x, y);
     renderFluidTank(guiGraphics, x, y);
   }
 
   private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
     if (menu.isCrafting()) {
       guiGraphics.blit(TEXTURE, x + 79, y + 35, 176, 14, menu.getScaledProgress(), 17);
+    }
+  }
+
+  private void renderBurning(GuiGraphics guiGraphics, int x, int y) {
+    if (menu.isCrafting()) {
+      guiGraphics.blit(TEXTURE, x + 57, y + 37, 176, 0, 14, 14);
     }
   }
 
@@ -75,16 +82,6 @@ public class ItemBurnerScreen extends AbstractContainerScreen<ItemBurnerMenu> {
           int tankX = x + FLUID_TANK_X;
           int tankY = y + FLUID_TANK_Y + (FLUID_TANK_HEIGHT - fluidHeight);
 
-          // Get tint color from fluid type
-          int tintColor = fluidTypeExtensions.getTintColor();
-
-          // Extract RGBA from tint color
-          float red = ((tintColor >> 16) & 0xFF) / 255f;
-          float green = ((tintColor >> 8) & 0xFF) / 255f;
-          float blue = (tintColor & 0xFF) / 255f;
-          float alpha = ((tintColor >> 24) & 0xFF) / 255f;
-
-          RenderSystem.setShaderColor(red, green, blue, alpha);
           RenderSystem.enableBlend();
 
           // Render the fluid texture tiled vertically
