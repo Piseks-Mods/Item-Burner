@@ -3,5 +3,6 @@
   "creativetab.item_burner_tab": "Item Burner",
   "item.itemburner.chronoflux_bucket": "Chronoflux Bucket",
   "fluid_type.itemburner.chronoflux_fluid": "Chronoflux",
-  "gui.itemburner.tank.empty": "Empty"
+  "gui.itemburner.tank.empty": "Empty",
+  "block.itemburner.valve": "Chronoflux Valve"
 }

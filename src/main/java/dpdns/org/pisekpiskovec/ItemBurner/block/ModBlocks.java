@@ -22,6 +22,9 @@ public class ModBlocks {
   public static final RegistryObject<Block> BURNER =
       registerBlock("burner", () -> new ItemBurnerBlock(BlockBehaviour.Properties.copy(Blocks.ENCHANTING_TABLE)));
 
+  public static final RegistryObject<Block> VALVE =
+      registerBlock("valve", () -> new ChronofluxValveBlock(BlockBehaviour.Properties.copy(Blocks.CAULDRON)));
+
   public static final RegistryObject<LiquidBlock> CHRONOFLUX_BLOCK =
       BLOCKS.register(
           "chronoflux_block",
