@@ -1,6 +1,7 @@
 package dpdns.org.pisekpiskovec.ItemBurner.screen;
 
 import dpdns.org.pisekpiskovec.ItemBurner.ItemBurner;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.menus.ChronofluxValveMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -16,6 +17,9 @@ public class ModMenuTypes {
 
   public static final RegistryObject<MenuType<ItemBurnerMenu>> ITEM_BURNER_MENU =
       registerMenuType("item_burner_menu", ItemBurnerMenu::new);
+
+  public static final RegistryObject<MenuType<ChronofluxValveMenu>> CHRONOFLUX_VALVE_MENU =
+      registerMenuType("chronoflux_valve_menu", ChronofluxValveMenu::new);
 
   private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(
       String name, IContainerFactory factory) {

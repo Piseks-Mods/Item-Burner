@@ -9,6 +9,7 @@ import dpdns.org.pisekpiskovec.ItemBurner.item.ModCreativeModTabs;
 import dpdns.org.pisekpiskovec.ItemBurner.item.ModItems;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.ItemBurnerScreen;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.ModMenuTypes;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.screens.ChronofluxValveScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -63,6 +64,7 @@ public class ItemBurner {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
       MenuScreens.register(ModMenuTypes.ITEM_BURNER_MENU.get(), ItemBurnerScreen::new);
+      MenuScreens.register(ModMenuTypes.CHRONOFLUX_VALVE_MENU.get(), ChronofluxValveScreen::new);
     }
   }
 }
