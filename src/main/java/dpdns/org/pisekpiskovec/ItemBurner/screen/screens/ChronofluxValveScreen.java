@@ -26,6 +26,19 @@ public class ChronofluxValveScreen extends AbstractContainerScreen<ChronofluxVal
     int x = (width - imageWidth) / 2;
     int y = (height - imageHeight) / 2;
 
+    // Button dimensions
+    int[] buttonWidth = {30, 40, 50};
+    int buttonsGap = 2;
+
+    // Calculate total width of all buttons and gaps
+    int totalWidth = buttonsGap * (buttonWidth.length - 1);
+    for (int i : buttonWidth) {
+      totalWidth += i;
+    }
+
+    // Calculate starting X position to center all buttons
+    int startX = x + (imageWidth - totalWidth) / 2;
+
     // Button for 1 mB
     this.addRenderableWidget(
         Button.builder(
@@ -35,7 +48,7 @@ public class ChronofluxValveScreen extends AbstractContainerScreen<ChronofluxVal
                     minecraft.gameMode.handleInventoryButtonClick(menu.containerId, 0);
                   }
                 })
-            .bounds(x + 100, y + 20, 60, 20)
+            .bounds(startX, y + 40, buttonWidth[0], 20)
             .build());
 
     // Button for 10 mB
@@ -47,7 +60,7 @@ public class ChronofluxValveScreen extends AbstractContainerScreen<ChronofluxVal
                     minecraft.gameMode.handleInventoryButtonClick(menu.containerId, 1);
                   }
                 })
-            .bounds(x + 100, y + 42, 60, 20)
+            .bounds(startX + buttonWidth[0] + buttonsGap, y + 40, buttonWidth[1], 20)
             .build());
 
     // Button for 100 mB
@@ -59,7 +72,7 @@ public class ChronofluxValveScreen extends AbstractContainerScreen<ChronofluxVal
                     minecraft.gameMode.handleInventoryButtonClick(menu.containerId, 2);
                   }
                 })
-            .bounds(x + 100, y + 64, 60, 20)
+            .bounds(startX + buttonWidth[0] + buttonsGap + buttonWidth[1] + buttonsGap, y + 40, buttonWidth[2], 20)
             .build());
   }
 
@@ -85,7 +98,7 @@ public class ChronofluxValveScreen extends AbstractContainerScreen<ChronofluxVal
 
     // Render fluid amount as label
     Component fluidLabel = Component.literal("Chronoflux: " + amount + " / " + capacity + " mB");
-    pGuiGraphics.drawString(this.font, fluidLabel, 10, 20, 0x404040, false);
+    pGuiGraphics.drawString(this.font, fluidLabel, 8, 20, 0x404040, false);
   }
 
   @Override
