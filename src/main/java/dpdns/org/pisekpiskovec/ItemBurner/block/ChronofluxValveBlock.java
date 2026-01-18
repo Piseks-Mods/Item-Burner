@@ -23,7 +23,7 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class ChronofluxValveBlock extends BaseEntityBlock {
-  public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 16, 16);
+  public static final VoxelShape SHAPE = Block.box(3, 0, 3, 13, 10, 13);
 
   protected ChronofluxValveBlock(Properties pProperties) {
     super(pProperties);

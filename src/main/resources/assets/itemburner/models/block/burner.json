@@ -1,10 +1,13 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
+	"render_type": "cutout",
 	"textures": {
-		"particle": "iron_bars",
-		"fire": "fire_0",
-		"stone_bircks": "stone_bricks"
+		"particle": "minecraft:block/iron_bars",
+		"iron_bars": "minecraft:block/iron_bars",
+		"fire": "minecraft:block/fire_0",
+		"stone_bricks": "minecraft:block/stone_bricks",
+		"lapis_block": "minecraft:block/lapis_block"
 	},
 	"elements": [
 		{
@@ -13,12 +16,12 @@
 			"to": [16, 1, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0.5, 8]},
 			"faces": {
-				"north": {"uv": [0, 1, 16, 2], "texture": "#stone_bircks"},
-				"east": {"uv": [0, 1, 16, 2], "texture": "#stone_bircks"},
-				"south": {"uv": [0, 1, 16, 2], "texture": "#stone_bircks"},
-				"west": {"uv": [0, 1, 16, 2], "texture": "#stone_bircks"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#stone_bircks"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#stone_bircks"}
+				"north": {"uv": [0, 1, 16, 2], "texture": "#stone_bricks"},
+				"east": {"uv": [0, 1, 16, 2], "texture": "#stone_bricks"},
+				"south": {"uv": [0, 1, 16, 2], "texture": "#stone_bricks"},
+				"west": {"uv": [0, 1, 16, 2], "texture": "#stone_bricks"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#stone_bricks"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#stone_bricks"}
 			}
 		},
 		{
@@ -39,6 +42,8 @@
 			"from": [-1.89964, 6, 8.00036],
 			"to": [17.90036, 15, 8.00036],
 			"rotation": {"angle": -45, "axis": "y", "origin": [8.00036, 10.5, 8.00036]},
+			"light_emission": 7,
+			"shade": false,
 			"faces": {
 				"north": {"uv": [0, 3, 16, 12], "texture": "#fire"},
 				"south": {"uv": [0, 3, 16, 12], "texture": "#fire"}
@@ -49,6 +54,8 @@
 			"from": [-1.89964, 6, 7.99964],
 			"to": [17.90036, 15, 7.99964],
 			"rotation": {"angle": 45, "axis": "y", "origin": [8.00036, 10.5, 7.99964]},
+			"light_emission": 7,
+			"shade": false,
 			"faces": {
 				"north": {"uv": [0, 3, 16, 12], "texture": "#fire"},
 				"south": {"uv": [0, 3, 16, 12], "texture": "#fire"}
@@ -59,8 +66,7 @@
 			"from": [0, 1, 0],
 			"to": [16, 16, 1],
 			"faces": {
-				"north": {"uv": [0, 0, 16, 15], "texture": "#iron_bars"},
-				"up": {"uv": [0, 0, 0, 0], "texture": "#iron_bars"}
+				"north": {"uv": [0, 0, 16, 15], "texture": "#iron_bars"}
 			}
 		},
 		{
@@ -79,8 +85,7 @@
 			"to": [16, 16, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 16]},
 			"faces": {
-				"south": {"uv": [0, 0, 16, 15], "texture": "#iron_bars"},
-				"up": {"uv": [0, 0, 0, 0], "rotation": 180, "texture": "#iron_bars"}
+				"south": {"uv": [0, 0, 16, 15], "texture": "#iron_bars"}
 			}
 		},
 		{

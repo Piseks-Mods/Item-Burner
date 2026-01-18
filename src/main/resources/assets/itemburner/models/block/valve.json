@@ -1,10 +1,13 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
+	"render_type": "cutout",
 	"textures": {
-		"particle": "iron_bars",
-		"chrfl_s": "itemburner:chronoflux_still",
-		"chrfl_f": "itemburner:chronoflux_flow"
+		"particle": "minecraft:block/iron_bars",
+		"iron_bars": "minecraft:block/iron_bars",
+		"chrfl_s": "itemburner:block/chronoflux_still",
+		"chrfl_f": "itemburner:block/chronoflux_flow",
+		"obsidian": "minecraft:block/obsidian"
 	},
 	"elements": [
 		{
