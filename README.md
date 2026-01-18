@@ -26,7 +26,7 @@ Item Burner adds **Item Burner** which can be used to smelt blocks and tools int
   - `mB = ( 64 * currentDurability ) / maxDurability`
   - This means that:
     - New Iron Sword will generate 64 mB of Chronoflux
-    - Slighly used Iron Sword (200 / 250 durability) will generate 51 mB of Chronoflux
+    - Slightly used Iron Sword (200 / 250 durability) will generate 51 mB of Chronoflux
 - On top of that base there's added an enchantment bonus:
   - For each enchantment add it's level
   - This means that:
