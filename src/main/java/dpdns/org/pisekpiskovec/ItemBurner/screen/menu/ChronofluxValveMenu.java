@@ -1,4 +1,4 @@
-package dpdns.org.pisekpiskovec.ItemBurner.screen.menus;
+package dpdns.org.pisekpiskovec.ItemBurner.screen.menu;
 
 import dpdns.org.pisekpiskovec.ItemBurner.block.ModBlocks;
 import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ChronofluxValveBlockEntity;

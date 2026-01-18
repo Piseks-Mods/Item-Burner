@@ -1,7 +1,7 @@
 package dpdns.org.pisekpiskovec.ItemBurner.screen;
 
 import dpdns.org.pisekpiskovec.ItemBurner.ItemBurner;
-import dpdns.org.pisekpiskovec.ItemBurner.screen.menus.ChronofluxValveMenu;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.menu.ChronofluxValveMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;

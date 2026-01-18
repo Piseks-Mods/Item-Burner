@@ -1,7 +1,7 @@
 package dpdns.org.pisekpiskovec.ItemBurner.block.entity;
 
 import dpdns.org.pisekpiskovec.ItemBurner.fluid.ModFluids;
-import dpdns.org.pisekpiskovec.ItemBurner.screen.menus.ChronofluxValveMenu;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.menu.ChronofluxValveMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;

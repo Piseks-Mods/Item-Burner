@@ -1,8 +1,8 @@
-package dpdns.org.pisekpiskovec.ItemBurner.screen.screens;
+package dpdns.org.pisekpiskovec.ItemBurner.screen.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import dpdns.org.pisekpiskovec.ItemBurner.ItemBurner;
-import dpdns.org.pisekpiskovec.ItemBurner.screen.menus.ChronofluxValveMenu;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.menu.ChronofluxValveMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
