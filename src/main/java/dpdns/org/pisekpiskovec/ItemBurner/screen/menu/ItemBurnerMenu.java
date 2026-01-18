@@ -1,8 +1,9 @@
-package dpdns.org.pisekpiskovec.ItemBurner.screen;
+package dpdns.org.pisekpiskovec.ItemBurner.screen.menu;
 
 import dpdns.org.pisekpiskovec.ItemBurner.block.ModBlocks;
 import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ItemBurnerBlockEntity;
 import dpdns.org.pisekpiskovec.ItemBurner.fluid.ModFluids;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

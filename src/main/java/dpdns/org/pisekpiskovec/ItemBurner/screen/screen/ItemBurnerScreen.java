@@ -1,7 +1,8 @@
-package dpdns.org.pisekpiskovec.ItemBurner.screen;
+package dpdns.org.pisekpiskovec.ItemBurner.screen.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import dpdns.org.pisekpiskovec.ItemBurner.ItemBurner;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.menu.ItemBurnerMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
