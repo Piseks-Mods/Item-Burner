@@ -9,6 +9,7 @@ import dpdns.org.pisekpiskovec.ItemBurner.item.ModCreativeModTabs;
 import dpdns.org.pisekpiskovec.ItemBurner.item.ModItems;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.ModMenuTypes;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.screen.ChronofluxValveScreen;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.screen.ChronoresinCentrifugeScreen;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.screen.ItemBurnerScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
@@ -26,45 +27,49 @@ import org.slf4j.Logger;
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ItemBurner.MOD_ID)
 public class ItemBurner {
-  // Define mod id in a common place for everything to reference
-  public static final String MOD_ID = "itemburner";
-  // Directly reference a slf4j logger
-  private static final Logger LOGGER = LogUtils.getLogger();
+    // Define mod id in a common place for everything to reference
+    public static final String MOD_ID = "itemburner";
+    // Directly reference a slf4j logger
+    private static final Logger LOGGER = LogUtils.getLogger();
 
-  public ItemBurner(FMLJavaModLoadingContext context) {
-    IEventBus modEventBus = context.getModEventBus();
+    public ItemBurner(FMLJavaModLoadingContext context) {
+        IEventBus modEventBus = context.getModEventBus();
 
-    ModItems.register(modEventBus);
-    ModBlockEntities.register(modEventBus);
-    ModBlocks.register(modEventBus);
-    ModFluidTypes.register(modEventBus);
-    ModFluids.register(modEventBus);
-    ModCreativeModTabs.register(modEventBus);
-    ModMenuTypes.register(modEventBus);
+        ModItems.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModBlocks.register(modEventBus);
+        ModFluidTypes.register(modEventBus);
+        ModFluids.register(modEventBus);
+        ModCreativeModTabs.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
-    modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::commonSetup);
 
-    MinecraftForge.EVENT_BUS.register(this);
-    modEventBus.addListener(this::addCreative);
-  }
-
-  private void commonSetup(final FMLCommonSetupEvent event) {}
-
-  // Add the example block item to the building blocks tab
-  private void addCreative(BuildCreativeModeTabContentsEvent event) {}
-
-  // You can use SubscribeEvent and let the Event Bus discover methods to call
-  @SubscribeEvent
-  public void onServerStarting(ServerStartingEvent event) {}
-
-  // You can use EventBusSubscriber to automatically register all static methods in the class annotated with
-  // @SubscribeEvent
-  @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-  public static class ClientModEvents {
-    @SubscribeEvent
-    public static void onClientSetup(FMLClientSetupEvent event) {
-      MenuScreens.register(ModMenuTypes.ITEM_BURNER_MENU.get(), ItemBurnerScreen::new);
-      MenuScreens.register(ModMenuTypes.CHRONOFLUX_VALVE_MENU.get(), ChronofluxValveScreen::new);
+        MinecraftForge.EVENT_BUS.register(this);
+        modEventBus.addListener(this::addCreative);
     }
-  }
+
+    private void commonSetup(final FMLCommonSetupEvent event) {
+    }
+
+    // Add the example block item to the building blocks tab
+    private void addCreative(BuildCreativeModeTabContentsEvent event) {
+    }
+
+    // You can use SubscribeEvent and let the Event Bus discover methods to call
+    @SubscribeEvent
+    public void onServerStarting(ServerStartingEvent event) {
+    }
+
+    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with
+    // @SubscribeEvent
+    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            MenuScreens.register(ModMenuTypes.ITEM_BURNER_MENU.get(), ItemBurnerScreen::new);
+            MenuScreens.register(ModMenuTypes.CHRONOFLUX_VALVE_MENU.get(), ChronofluxValveScreen::new);
+            MenuScreens.register(ModMenuTypes.CHRONORESIN_CENTRIFUGE_MENU.get(), ChronoresinCentrifugeScreen::new);
+        }
+    }
 }

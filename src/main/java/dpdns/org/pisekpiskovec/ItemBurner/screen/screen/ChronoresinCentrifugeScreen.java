@@ -74,8 +74,8 @@ public class ChronoresinCentrifugeScreen extends AbstractContainerScreen<Chronor
                         default -> throw new IllegalStateException("Unexpected value: " + dataIndex);
                     } + (FLUID_TANK_WIDTH - fluidFilling);
                     int tankY = y + switch (dataIndex) {
-                        case 0 -> CHRONOFLUX_TANK_X;
-                        case 1 -> CHRONORESIN_TANK_X;
+                        case 0 -> CHRONOFLUX_TANK_Y;
+                        case 1 -> CHRONORESIN_TANK_Y;
                         default -> throw new IllegalStateException("Unexpected value: " + dataIndex);
                     };
 
