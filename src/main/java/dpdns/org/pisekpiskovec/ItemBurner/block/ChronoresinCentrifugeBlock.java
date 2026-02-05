@@ -16,6 +16,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -24,9 +27,16 @@ import org.jetbrains.annotations.Nullable;
 
 public class ChronoresinCentrifugeBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 16, 16);
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     protected ChronoresinCentrifugeBlock(Properties pProperties) {
         super(pProperties);
+        this.registerDefaultState(this.getStateDefinition().any().setValue(POWERED, false));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(POWERED);
     }
 
     @Override
@@ -37,6 +47,29 @@ public class ChronoresinCentrifugeBlock extends BaseEntityBlock {
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
+    }
+
+    @Override
+    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pNeighborBlock, BlockPos pNeighborPos, boolean pMovedByPiston) {
+        if (!pLevel.isClientSide()) {
+            boolean isPowered = pLevel.hasNeighborSignal(pPos);
+            boolean wasPowered = pState.getValue(POWERED);
+
+            // Detect rising edge
+            if (isPowered && !wasPowered) {
+                BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+                if (blockEntity instanceof ChronoresinCentrifugeBlockEntity centrifuge) {
+                    centrifuge.craft();
+                }
+            }
+
+            // Update block state if power changed
+            if (isPowered != wasPowered) {
+                pLevel.setBlock(pPos, pState.setValue(POWERED, isPowered), 3);
+            }
+        }
+
+        super.neighborChanged(pState, pLevel, pPos, pNeighborBlock, pNeighborPos, pMovedByPiston);
     }
 
     @Override

@@ -26,6 +26,8 @@ import org.jetbrains.annotations.Nullable;
 public class ChronoresinCentrifugeBlockEntity extends BlockEntity implements MenuProvider {
     public static final int CHRONOFLUX_TANK_CAPACITY = 10000;
     public static final int CHRONORESIN_TANK_CAPACITY = 10000;
+    public static final int CRAFTING_INPUT_REQUIRED = 10; // TODO: Connect to configuration
+    public static final int CRAFTING_OUTPUT_RESULTED = 1; // TODO: Connect to configuration
 
     private final FluidTank chronofluxTank = new FluidTank(CHRONOFLUX_TANK_CAPACITY) {
         @Override
@@ -157,6 +159,14 @@ public class ChronoresinCentrifugeBlockEntity extends BlockEntity implements Men
                 }
             });
         }
+    }
+
+    public void craft() {
+        FluidStack inputStack = this.chronofluxTank.getFluid();
+        if (inputStack.isEmpty() || inputStack.getAmount() < CRAFTING_INPUT_REQUIRED) return;
+        FluidStack outputStack = new FluidStack(ModFluids.SOURCE_CHRONORESIN.get(), CRAFTING_OUTPUT_RESULTED);
+        chronoresinTank.fill(outputStack, IFluidHandler.FluidAction.EXECUTE);
+        this.chronofluxTank.drain(CRAFTING_INPUT_REQUIRED, IFluidHandler.FluidAction.EXECUTE);
     }
 
     public FluidTank getChronofluxTank() {
