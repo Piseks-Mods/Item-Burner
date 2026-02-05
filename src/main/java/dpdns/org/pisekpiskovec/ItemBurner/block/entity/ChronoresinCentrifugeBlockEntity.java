@@ -1,5 +1,6 @@
 package dpdns.org.pisekpiskovec.ItemBurner.block.entity;
 
+import dpdns.org.pisekpiskovec.ItemBurner.config.ModConfig;
 import dpdns.org.pisekpiskovec.ItemBurner.fluid.ModFluids;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.menu.ChronoresinCentrifugeMenu;
 import net.minecraft.core.BlockPos;
@@ -26,8 +27,8 @@ import org.jetbrains.annotations.Nullable;
 public class ChronoresinCentrifugeBlockEntity extends BlockEntity implements MenuProvider {
     public static final int CHRONOFLUX_TANK_CAPACITY = 1000;
     public static final int CHRONORESIN_TANK_CAPACITY = 1000;
-    public static final int CRAFTING_INPUT_REQUIRED = 10; // TODO: Connect to configuration
-    public static final int CRAFTING_OUTPUT_RESULTED = 1; // TODO: Connect to configuration
+    public static final int CRAFTING_INPUT_REQUIRED = ModConfig.COMMON.chronofluxToChronoresin.get();
+    public static final int CRAFTING_OUTPUT_RESULTED = ModConfig.COMMON.chronoresinProduced.get();
 
     private final FluidTank chronofluxTank = new FluidTank(CHRONOFLUX_TANK_CAPACITY) {
         @Override

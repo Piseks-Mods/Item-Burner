@@ -3,6 +3,7 @@ package dpdns.org.pisekpiskovec.ItemBurner;
 import com.mojang.logging.LogUtils;
 import dpdns.org.pisekpiskovec.ItemBurner.block.ModBlocks;
 import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ModBlockEntities;
+import dpdns.org.pisekpiskovec.ItemBurner.config.ModConfig;
 import dpdns.org.pisekpiskovec.ItemBurner.fluid.ModFluidTypes;
 import dpdns.org.pisekpiskovec.ItemBurner.fluid.ModFluids;
 import dpdns.org.pisekpiskovec.ItemBurner.item.ModCreativeModTabs;
@@ -18,6 +19,7 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -47,6 +49,8 @@ public class ItemBurner {
 
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
+
+        ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, ModConfig.COMMON_SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
