@@ -105,4 +105,9 @@ public class ChronoresinCentrifugeScreen extends AbstractContainerScreen<Chronor
         // Render fluid tank tooltips
         // TODO
     }
+
+    @Override
+    protected void renderLabels(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY) {
+        pGuiGraphics.drawString(this.font, this.title, this.titleLabelX, this.titleLabelY, 4210752, false);
+    }
 }
