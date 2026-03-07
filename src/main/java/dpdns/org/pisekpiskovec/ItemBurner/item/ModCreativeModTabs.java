@@ -11,25 +11,16 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModCreativeModTabs {
-  public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
-      DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ItemBurner.MOD_ID);
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ItemBurner.MOD_ID);
 
-  public static final RegistryObject<CreativeModeTab> ITEM_BURNER_TAB =
-      CREATIVE_MODE_TABS.register(
-          "item_burner_tab",
-          () ->
-              CreativeModeTab.builder()
-                  .icon(() -> new ItemStack(ModBlocks.BURNER.get()))
-                  .title(Component.translatable("creativetab.item_burner_tab"))
-                  .displayItems(
-                      (pParameters, pOutput) -> {
-                        pOutput.accept(ModBlocks.BURNER.get());
-                        pOutput.accept(ModItems.CHRONOFLUX_BUCKET.get());
-                        pOutput.accept(ModBlocks.VALVE.get());
-                      })
-                  .build());
+    public static final RegistryObject<CreativeModeTab> ITEM_BURNER_TAB = CREATIVE_MODE_TABS.register("item_burner_tab", () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.BURNER.get())).title(Component.translatable("creativetab.item_burner_tab")).displayItems((pParameters, pOutput) -> {
+        pOutput.accept(ModBlocks.BURNER.get());
+        pOutput.accept(ModItems.CHRONOFLUX_BUCKET.get());
+        pOutput.accept(ModBlocks.VALVE.get());
+        pOutput.accept(ModBlocks.CENTRIFUGE.get());
+    }).build());
 
-  public static void register(IEventBus eventBus) {
-    CREATIVE_MODE_TABS.register(eventBus);
-  }
+    public static void register(IEventBus eventBus) {
+        CREATIVE_MODE_TABS.register(eventBus);
+    }
 }
