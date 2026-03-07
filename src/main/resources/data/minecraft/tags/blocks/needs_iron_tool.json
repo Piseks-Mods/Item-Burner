@@ -1,6 +1,7 @@
 {
   "values": [
     "itemburner:burner",
-    "itemburner:valve"
+    "itemburner:valve",
+    "itemburner:centrifuge"
   ]
 }
