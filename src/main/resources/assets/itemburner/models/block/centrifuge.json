@@ -1,0 +1,117 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"render_type": "cutout",
+	"textures": {
+		"bars": "minecraft:block/iron_bars",
+		"fluid": "itemburner:block/chronoresin_still",
+		"particle": "minecraft:block/cauldron_side",
+		"piston_b": "minecraft:block/piston_bottom",
+		"piston_s": "minecraft:block/piston_side",
+		"piston_t": "minecraft:block/piston_top"
+	},
+	"elements": [
+		{
+			"name": "base",
+			"from": [0, 0, 0],
+			"to": [16, 4, 16],
+			"color": 7,
+			"faces": {
+				"north": {"uv": [0, 2, 16, 4], "texture": "#piston_s"},
+				"east": {"uv": [0, 2, 16, 4], "texture": "#piston_s"},
+				"south": {"uv": [0, 2, 16, 4], "texture": "#piston_s"},
+				"west": {"uv": [0, 2, 16, 4], "texture": "#piston_s"},
+				"up": {"uv": [0, 2, 16, 16], "texture": "#piston_t"},
+				"down": {"uv": [0, 2, 16, 16], "texture": "#piston_b"}
+			}
+		},
+		{
+			"from": [2, 4, 2],
+			"to": [4, 15, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 1, 0]},
+			"faces": {
+				"north": {"uv": [12, 1, 14, 12], "texture": "#particle"},
+				"east": {"uv": [2, 1, 14, 12], "texture": "#particle"},
+				"south": {"uv": [2, 1, 4, 12], "texture": "#particle"},
+				"west": {"uv": [2, 1, 14, 12], "texture": "#particle"},
+				"up": {"uv": [2, 2, 4, 14], "texture": "#particle"},
+				"down": {"uv": [2, 2, 4, 14], "texture": "#particle"}
+			}
+		},
+		{
+			"from": [4, 10, 4],
+			"to": [12, 11, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 7, 0]},
+			"color": 0,
+			"faces": {
+				"up": {"uv": [4, 4, 12, 12], "texture": "#fluid"}
+			}
+		},
+		{
+			"from": [12, 4, 2],
+			"to": [14, 15, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-2, 1, 0]},
+			"faces": {
+				"north": {"uv": [2, 1, 4, 12], "texture": "#particle"},
+				"east": {"uv": [2, 1, 14, 12], "texture": "#particle"},
+				"south": {"uv": [12, 1, 14, 12], "texture": "#particle"},
+				"west": {"uv": [2, 1, 14, 12], "texture": "#particle"},
+				"up": {"uv": [12, 2, 14, 14], "texture": "#particle"},
+				"down": {"uv": [12, 2, 14, 14], "texture": "#particle"}
+			}
+		},
+		{
+			"from": [4, 4, 2],
+			"to": [12, 15, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 1, 2]},
+			"faces": {
+				"north": {"uv": [4, 1, 12, 12], "texture": "#particle"},
+				"south": {"uv": [4, 1, 12, 12], "texture": "#particle"},
+				"up": {"uv": [4, 2, 12, 4], "texture": "#particle"},
+				"down": {"uv": [4, 12, 12, 14], "texture": "#particle"}
+			}
+		},
+		{
+			"from": [4, 4, 12],
+			"to": [12, 15, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 1, -2]},
+			"faces": {
+				"north": {"uv": [4, 1, 12, 12], "texture": "#particle"},
+				"south": {"uv": [4, 1, 12, 12], "texture": "#particle"},
+				"up": {"uv": [4, 12, 12, 14], "texture": "#particle"},
+				"down": {"uv": [4, 2, 12, 4], "texture": "#particle"}
+			}
+		},
+		{   "from": [ 8, 5, 8 ],
+			"to": [ 8, 14, 9 ],
+			"faces": {
+				"west": { "uv": [ 8, 0, 7, 16 ], "texture": "#bars" },
+				"east": { "uv": [ 7, 0, 8, 16 ], "texture": "#bars" }
+			}
+		},
+		{   "from": [ 7, 5, 9 ],
+			"to": [ 9, 14, 9 ],
+			"faces": {
+				"north": { "uv": [ 9, 0, 7, 16 ], "texture": "#bars" },
+				"south": { "uv": [ 7, 0, 9, 16 ], "texture": "#bars" }
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		}
+	},
+	"groups": [
+		0,
+		{
+			"name": "cauldron",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [1, 2, 3, 4, 5, 6]
+		},
+		7
+	]
+}
