@@ -105,7 +105,43 @@ public class ChronoresinCentrifugeScreen extends AbstractContainerScreen<Chronor
         renderTooltip(pGuiGraphics, pMouseX, pMouseY);
 
         // Render fluid tank tooltips
-        // TODO
+        // Chronoflux
+        {
+            int x = (width - imageWidth) / 2;
+            int y = (height - imageHeight) / 2;
+            int tankX = x + CHRONOFLUX_TANK_X;
+            int tankY = y + CHRONOFLUX_TANK_Y;
+
+            if (pMouseX >= tankX && pMouseX <= tankX + FLUID_TANK_WIDTH && pMouseY >= tankY && pMouseY <= tankY + FLUID_TANK_HEIGHT) {
+                FluidStack fluidStack = menu.getChronofluxStack();
+                if (!fluidStack.isEmpty()) {
+                    Component fluidName = fluidStack.getDisplayName();
+                    Component amount = Component.literal(fluidStack.getAmount() + " / " + menu.getFluidCapacity() + " mB");
+                    pGuiGraphics.renderComponentTooltip(this.font, java.util.List.of(fluidName, amount), pMouseX, pMouseY);
+                } else {
+                    pGuiGraphics.renderTooltip(this.font, Component.translatable("gui.itemburner.tank.empty"), pMouseX, pMouseY);
+                }
+            }
+        }
+
+        // Chronoresin
+        {
+            int x = (width - imageWidth) / 2;
+            int y = (height - imageHeight) / 2;
+            int tankX = x + CHRONORESIN_TANK_X;
+            int tankY = y + CHRONORESIN_TANK_Y;
+
+            if (pMouseX >= tankX && pMouseX <= tankX + FLUID_TANK_WIDTH && pMouseY >= tankY && pMouseY <= tankY + FLUID_TANK_HEIGHT) {
+                FluidStack fluidStack = menu.getChronoresinStack();
+                if (!fluidStack.isEmpty()) {
+                    Component fluidName = fluidStack.getDisplayName();
+                    Component amount = Component.literal(fluidStack.getAmount() + " / " + menu.getFluidCapacity() + " mB");
+                    pGuiGraphics.renderComponentTooltip(this.font, java.util.List.of(fluidName, amount), pMouseX, pMouseY);
+                } else {
+                    pGuiGraphics.renderTooltip(this.font, Component.translatable("gui.itemburner.tank.empty"), pMouseX, pMouseY);
+                }
+            }
+        }
     }
 
     @Override
