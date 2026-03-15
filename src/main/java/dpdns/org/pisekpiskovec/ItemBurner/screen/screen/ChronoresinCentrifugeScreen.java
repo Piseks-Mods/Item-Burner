@@ -13,9 +13,10 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.NotNull;
 
 public class ChronoresinCentrifugeScreen extends AbstractContainerScreen<ChronoresinCentrifugeMenu> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(ItemBurner.MOD_ID, "textures/gui/centrifuge.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(ItemBurner.MOD_ID, "textures/gui/centrifuge.png");
     private static final int CHRONOFLUX_TANK_X = 8;
     private static final int CHRONOFLUX_TANK_Y = 17;
     private static final int CHRONORESIN_TANK_X = 8;
@@ -65,6 +66,7 @@ public class ChronoresinCentrifugeScreen extends AbstractContainerScreen<Chronor
                 ResourceLocation stillTexture = fluidTypeExtensions.getStillTexture();
 
                 if (stillTexture != null) {
+                    assert minecraft != null;
                     TextureAtlasSprite sprite = minecraft.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(stillTexture); // Get the texture from the block atlas
 
                     // Position where fluid rendering starts (from left)
@@ -97,7 +99,7 @@ public class ChronoresinCentrifugeScreen extends AbstractContainerScreen<Chronor
     }
 
     @Override
-    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    public void render(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         renderBackground(pGuiGraphics);
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         renderTooltip(pGuiGraphics, pMouseX, pMouseY);
