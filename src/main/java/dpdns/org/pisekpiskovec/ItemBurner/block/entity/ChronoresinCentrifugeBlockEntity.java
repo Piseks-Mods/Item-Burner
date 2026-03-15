@@ -34,6 +34,7 @@ public class ChronoresinCentrifugeBlockEntity extends BlockEntity implements Men
         @Override
         protected void onContentsChanged() {
             setChanged();
+            syncFluidToClient();
         }
 
         @Override
@@ -46,6 +47,7 @@ public class ChronoresinCentrifugeBlockEntity extends BlockEntity implements Men
         @Override
         protected void onContentsChanged() {
             setChanged();
+            syncFluidToClient();
         }
 
         @Override
@@ -98,8 +100,46 @@ public class ChronoresinCentrifugeBlockEntity extends BlockEntity implements Men
     @Override
     public void onLoad() {
         super.onLoad();
-        lazyFluidHandler = LazyOptional.of(() -> chronofluxTank);
-        lazyFluidHandler = LazyOptional.of(() -> chronoresinTank);
+
+        lazyFluidHandler = LazyOptional.of(() -> new IFluidHandler() {
+            @Override
+            public int getTanks() {
+                return 2;
+            }
+
+            @Override
+            public @NotNull FluidStack getFluidInTank(int tank) {
+                return tank == 0 ? chronofluxTank.getFluid() : chronoresinTank.getFluid();
+            }
+
+            @Override
+            public int getTankCapacity(int tank) {
+                return tank == 0 ? chronofluxTank.getCapacity() : chronoresinTank.getCapacity();
+            }
+
+            @Override
+            public boolean isFluidValid(int tank, @NotNull FluidStack stack) {
+                return tank == 0 ? chronofluxTank.isFluidValid(stack) : chronoresinTank.isFluidValid(stack);
+            }
+
+            @Override
+            public int fill(FluidStack resource, FluidAction action) {
+                if (resource.getFluid() == ModFluids.SOURCE_CHRONOFLUX.get()) {
+                    return chronofluxTank.fill(resource, action);
+                }
+                return 0;
+            }
+
+            @Override
+            public @NotNull FluidStack drain(FluidStack resource, FluidAction action) {
+                return chronoresinTank.drain(resource, action);
+            }
+
+            @Override
+            public @NotNull FluidStack drain(int maxDrain, FluidAction action) {
+                return chronoresinTank.drain(maxDrain, action);
+            }
+        });
     }
 
     @Override
@@ -183,5 +223,10 @@ public class ChronoresinCentrifugeBlockEntity extends BlockEntity implements Men
 
     public FluidTank getChronoresinTank() {
         return chronoresinTank;
+    }
+
+    private void syncFluidToClient() {
+        this.chronofluxAmount = this.chronofluxTank.getFluidAmount();
+        this.chronoresinAmount = this.chronoresinTank.getFluidAmount();
     }
 }

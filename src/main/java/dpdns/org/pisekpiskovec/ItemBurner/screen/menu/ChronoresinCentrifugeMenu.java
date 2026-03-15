@@ -30,6 +30,8 @@ public class ChronoresinCentrifugeMenu extends AbstractContainerMenu {
         this.blockEntity = (ChronoresinCentrifugeBlockEntity) entity;
         this.level = inv.player.level();
         this.data = data;
+
+        addDataSlots(data);
     }
 
     public FluidStack getChronofluxStack() {
@@ -66,6 +68,20 @@ public class ChronoresinCentrifugeMenu extends AbstractContainerMenu {
 
     public int getFluidCapacity() {
         return Math.min(this.blockEntity.getChronofluxTank().getCapacity(), this.blockEntity.getChronoresinTank().getCapacity());
+    }
+
+    public int getFluidCapacit(int index) {
+        switch (index) {
+            case 1 -> {
+                return this.blockEntity.getChronofluxTank().getCapacity();
+            }
+            case 2 -> {
+                return this.blockEntity.getChronoresinTank().getCapacity();
+            }
+            default -> {
+                return getFluidCapacity();
+            }
+        }
     }
 
     @Override
