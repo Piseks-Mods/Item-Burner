@@ -16,12 +16,12 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class ChronoresinCentrifugeScreen extends AbstractContainerScreen<ChronoresinCentrifugeMenu> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(ItemBurner.MOD_ID, "textures/gui/centrifuge.png");
-    private static final int CHRONOFLUX_TANK_X = 0;
-    private static final int CHRONOFLUX_TANK_Y = 0;
-    private static final int CHRONORESIN_TANK_X = 0;
-    private static final int CHRONORESIN_TANK_Y = 0;
-    private static final int FLUID_TANK_WIDTH = 0;
-    private static final int FLUID_TANK_HEIGHT = 0;
+    private static final int CHRONOFLUX_TANK_X = 8;
+    private static final int CHRONOFLUX_TANK_Y = 17;
+    private static final int CHRONORESIN_TANK_X = 8;
+    private static final int CHRONORESIN_TANK_Y = 45;
+    private static final int FLUID_TANK_WIDTH = 160;
+    private static final int FLUID_TANK_HEIGHT = 24;
 
     public ChronoresinCentrifugeScreen(ChronoresinCentrifugeMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
