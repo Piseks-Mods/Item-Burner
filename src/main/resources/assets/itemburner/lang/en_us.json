@@ -5,5 +5,7 @@
   "fluid_type.itemburner.chronoflux_fluid": "Chronoflux",
   "gui.itemburner.tank.empty": "Empty",
   "block.itemburner.valve": "Chronoflux Valve",
-  "block.itemburner.centrifuge": "Chronoresin Centrifuge"
+  "block.itemburner.centrifuge": "Chronoresin Centrifuge",
+  "fluid_type.itemburner.chronoresin_fluid": "Chronoresin",
+  "item.itemburner.chronoresin_bucket": "Chronoresin Bucket"
 }
