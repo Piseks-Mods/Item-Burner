@@ -70,7 +70,7 @@ public class ChronoresinCentrifugeMenu extends AbstractContainerMenu {
         return Math.min(this.blockEntity.getChronofluxTank().getCapacity(), this.blockEntity.getChronoresinTank().getCapacity());
     }
 
-    public int getFluidCapacit(int index) {
+    public int getFluidCapacity(int index) {
         switch (index) {
             case 1 -> {
                 return this.blockEntity.getChronofluxTank().getCapacity();
