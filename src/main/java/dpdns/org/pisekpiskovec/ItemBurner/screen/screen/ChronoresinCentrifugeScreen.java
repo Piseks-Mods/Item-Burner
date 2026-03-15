@@ -57,7 +57,7 @@ public class ChronoresinCentrifugeScreen extends AbstractContainerScreen<Chronor
 
         if (!fluidStack.isEmpty()) {
             int fluidAmount = fluidStack.getAmount();
-            int capacity = menu.getFluidCapacity();
+            int capacity = menu.getFluidCapacity(dataIndex);
             int fluidFilling = (fluidAmount * FLUID_TANK_WIDTH) / capacity; // Calculate the width of fluid to render
 
             if (fluidFilling > 0) {
@@ -74,7 +74,7 @@ public class ChronoresinCentrifugeScreen extends AbstractContainerScreen<Chronor
                         case 0 -> CHRONOFLUX_TANK_X;
                         case 1 -> CHRONORESIN_TANK_X;
                         default -> throw new IllegalStateException("Unexpected value: " + dataIndex);
-                    } + (FLUID_TANK_WIDTH - fluidFilling);
+                    };
                     int tankY = y + switch (dataIndex) {
                         case 0 -> CHRONOFLUX_TANK_Y;
                         case 1 -> CHRONORESIN_TANK_Y;
