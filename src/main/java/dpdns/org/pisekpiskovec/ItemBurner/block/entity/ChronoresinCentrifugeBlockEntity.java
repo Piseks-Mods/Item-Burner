@@ -108,6 +108,10 @@ public class ChronoresinCentrifugeBlockEntity extends BlockEntity implements Men
         lazyFluidHandler.invalidate();
     }
 
+    public void drops() {
+        // Nop
+    }
+
     @Override
     public Component getDisplayName() {
         return Component.translatableWithFallback("block.itemburner.centrifuge", "Chronoresin Centrifuge");
