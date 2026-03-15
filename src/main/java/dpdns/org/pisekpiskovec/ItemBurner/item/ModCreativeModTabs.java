@@ -17,6 +17,7 @@ public class ModCreativeModTabs {
         pOutput.accept(ModBlocks.BURNER.get());
         pOutput.accept(ModItems.CHRONOFLUX_BUCKET.get());
         pOutput.accept(ModBlocks.VALVE.get());
+        pOutput.accept(ModItems.CHRONORESIN_BUCKET.get());
         pOutput.accept(ModBlocks.CENTRIFUGE.get());
     }).build());
 
