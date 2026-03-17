@@ -1,7 +1,7 @@
 package dpdns.org.pisekpiskovec.ItemBurner.screen.menu;
 
 import dpdns.org.pisekpiskovec.ItemBurner.block.ModBlocks;
-import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ItemBurnerBlockEntity;
+import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ChronoresinFabricatorBlockEntity;
 import dpdns.org.pisekpiskovec.ItemBurner.fluid.ModFluids;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
@@ -16,7 +16,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class ChronoresinFabricatorMenu extends AbstractContainerMenu {
-    public final ItemBurnerBlockEntity blockEntity;
+    public final ChronoresinFabricatorBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
 
@@ -27,7 +27,7 @@ public class ChronoresinFabricatorMenu extends AbstractContainerMenu {
     public ChronoresinFabricatorMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.ITEM_BURNER_MENU.get(), pContainerId);
         checkContainerSize(inv, 1);
-        blockEntity = ((ItemBurnerBlockEntity) entity);
+        blockEntity = ((ChronoresinFabricatorBlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;
 

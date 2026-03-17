@@ -2,7 +2,7 @@ package dpdns.org.pisekpiskovec.ItemBurner.block.entity;
 
 import dpdns.org.pisekpiskovec.ItemBurner.config.ModConfig;
 import dpdns.org.pisekpiskovec.ItemBurner.fluid.ModFluids;
-import dpdns.org.pisekpiskovec.ItemBurner.screen.menu.ItemBurnerMenu;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.menu.ChronoresinFabricatorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -137,7 +137,7 @@ public class ChronoresinFabricatorBlockEntity extends BlockEntity implements Men
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return new ItemBurnerMenu(pContainerId, pPlayerInventory, this, this.data);
+        return new ChronoresinFabricatorMenu(pContainerId, pPlayerInventory, this, this.data);
     }
 
     @Override

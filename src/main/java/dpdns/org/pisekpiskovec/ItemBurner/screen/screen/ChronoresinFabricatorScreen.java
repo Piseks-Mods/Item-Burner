@@ -2,7 +2,7 @@ package dpdns.org.pisekpiskovec.ItemBurner.screen.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import dpdns.org.pisekpiskovec.ItemBurner.ItemBurner;
-import dpdns.org.pisekpiskovec.ItemBurner.screen.menu.ItemBurnerMenu;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.menu.ChronoresinFabricatorMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -14,14 +14,14 @@ import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 
-public class ChronoresinFabricatorScreen extends AbstractContainerScreen<ItemBurnerMenu> {
+public class ChronoresinFabricatorScreen extends AbstractContainerScreen<ChronoresinFabricatorMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(ItemBurner.MOD_ID, "textures/gui/burner.png");
     private static final int FLUID_TANK_X = 112; // X position relative to GUI
     private static final int FLUID_TANK_Y = 17; // Y position relative to GUI
     private static final int FLUID_TANK_WIDTH = 24;
     private static final int FLUID_TANK_HEIGHT = 52;
 
-    public ChronoresinFabricatorScreen(ItemBurnerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public ChronoresinFabricatorScreen(ChronoresinFabricatorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 

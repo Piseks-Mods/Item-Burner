@@ -1,6 +1,6 @@
 package dpdns.org.pisekpiskovec.ItemBurner.block;
 
-import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ItemBurnerBlockEntity;
+import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ChronoresinFabricatorBlockEntity;
 import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -43,8 +43,8 @@ public class ChronoresinFabricatorBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof ItemBurnerBlockEntity) {
-                ((ItemBurnerBlockEntity) blockEntity).drops();
+            if (blockEntity instanceof ChronoresinFabricatorBlockEntity) {
+                ((ChronoresinFabricatorBlockEntity) blockEntity).drops();
             }
         }
 
@@ -55,8 +55,8 @@ public class ChronoresinFabricatorBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if (entity instanceof ItemBurnerBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer) pPlayer), (ItemBurnerBlockEntity) entity, pPos);
+            if (entity instanceof ChronoresinFabricatorBlockEntity) {
+                NetworkHooks.openScreen(((ServerPlayer) pPlayer), (ChronoresinFabricatorBlockEntity) entity, pPos);
             } else {
                 throw new IllegalStateException("Container provider is missing!");
             }
@@ -66,7 +66,7 @@ public class ChronoresinFabricatorBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new ItemBurnerBlockEntity(pPos, pState);
+        return new ChronoresinFabricatorBlockEntity(pPos, pState);
     }
 
     @Override
