@@ -23,8 +23,8 @@ public class ModConfig {
             builder.push("item_burner");
 
             maxBurnStack = builder.comment("Default max stack").defineInRange("maxBurnStack", 64, 1, 99);
-            chronofluxToChronoresin = builder.comment("Default max stack").defineInRange("chronofluxToChronoresin", 10, 1, 100000);
-            chronoresinProduced = builder.comment("Default max stack").defineInRange("chronoresinProduced", 1, 1, 100000);
+            chronofluxToChronoresin = builder.comment("How much Chronoflux required to make Chronoresin").defineInRange("chronofluxToChronoresin", 10, 1, 100000);
+            chronoresinProduced = builder.comment("How many Chronoresin will be produced from a Chronoflux").defineInRange("chronoresinProduced", 1, 1, 100000);
 
             builder.pop();
         }
