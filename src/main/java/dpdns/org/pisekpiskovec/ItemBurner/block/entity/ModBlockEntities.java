@@ -17,6 +17,8 @@ public class ModBlockEntities {
 
     public static final RegistryObject<BlockEntityType<ChronoresinCentrifugeBlockEntity>> CHRONORESIN_CENTRIFUGE_BE = BLOCK_ENTITIES.register("chronoresin_centrifuge_be", () -> BlockEntityType.Builder.of(ChronoresinCentrifugeBlockEntity::new, ModBlocks.CENTRIFUGE.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<ChronoresinFabricatorBlockEntity>> CHRONORESIN_FABRICATOR_BE = BLOCK_ENTITIES.register("chronoresin_fabricator", () -> BlockEntityType.Builder.of(ChronoresinFabricatorBlockEntity::new, ModBlocks.FABRICATOR.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

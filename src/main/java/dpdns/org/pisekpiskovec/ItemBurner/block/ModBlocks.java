@@ -25,6 +25,8 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> CENTRIFUGE = registerBlock("centrifuge", () -> new ChronoresinCentrifugeBlock(BlockBehaviour.Properties.copy(Blocks.BREWING_STAND)));
 
+    public static final RegistryObject<Block> FABRICATOR = registerBlock("fabricator", () -> new ChronoresinFabricatorBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
+
     public static final RegistryObject<LiquidBlock> CHRONOFLUX_BLOCK = BLOCKS.register("chronoflux_block", () -> new LiquidBlock(ModFluids.SOURCE_CHRONOFLUX, BlockBehaviour.Properties.copy(Blocks.WATER).noCollission().strength(100f).noLootTable()));
 
     public static final RegistryObject<LiquidBlock> CHRONORESIN_BLOCK = BLOCKS.register("chronoresin_block", () -> new LiquidBlock(ModFluids.SOURCE_CHRONORESIN, BlockBehaviour.Properties.copy(Blocks.WATER).noCollission().strength(100f).noLootTable()));
