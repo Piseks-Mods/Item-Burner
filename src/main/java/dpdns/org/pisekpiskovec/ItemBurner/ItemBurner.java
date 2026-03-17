@@ -11,6 +11,7 @@ import dpdns.org.pisekpiskovec.ItemBurner.item.ModItems;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.ModMenuTypes;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.screen.ChronofluxValveScreen;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.screen.ChronoresinCentrifugeScreen;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.screen.ChronoresinFabricatorScreen;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.screen.ItemBurnerScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
@@ -74,6 +75,7 @@ public class ItemBurner {
             MenuScreens.register(ModMenuTypes.ITEM_BURNER_MENU.get(), ItemBurnerScreen::new);
             MenuScreens.register(ModMenuTypes.CHRONOFLUX_VALVE_MENU.get(), ChronofluxValveScreen::new);
             MenuScreens.register(ModMenuTypes.CHRONORESIN_CENTRIFUGE_MENU.get(), ChronoresinCentrifugeScreen::new);
+            MenuScreens.register(ModMenuTypes.CHRONORESIN_FABRICATOR_MENU.get(), ChronoresinFabricatorScreen::new);
         }
     }
 }

@@ -3,6 +3,7 @@ package dpdns.org.pisekpiskovec.ItemBurner.screen;
 import dpdns.org.pisekpiskovec.ItemBurner.ItemBurner;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.menu.ChronofluxValveMenu;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.menu.ChronoresinCentrifugeMenu;
+import dpdns.org.pisekpiskovec.ItemBurner.screen.menu.ChronoresinFabricatorMenu;
 import dpdns.org.pisekpiskovec.ItemBurner.screen.menu.ItemBurnerMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -21,6 +22,8 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<ChronofluxValveMenu>> CHRONOFLUX_VALVE_MENU = registerMenuType("chronoflux_valve_menu", ChronofluxValveMenu::new);
 
     public static final RegistryObject<MenuType<ChronoresinCentrifugeMenu>> CHRONORESIN_CENTRIFUGE_MENU = registerMenuType("chronoresin_centrifuge_menu", ChronoresinCentrifugeMenu::new);
+
+    public static final RegistryObject<MenuType<ChronoresinFabricatorMenu>> CHRONORESIN_FABRICATOR_MENU = registerMenuType("chronoresin_fabricator_menu", ChronoresinFabricatorMenu::new);
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory factory) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));
