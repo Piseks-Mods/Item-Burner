@@ -56,7 +56,7 @@ public class ChronoresinFabricatorBlockEntity extends BlockEntity implements Men
 
         @Override
         public boolean isFluidValid(FluidStack stack) {
-            return stack.getFluid() == ModFluids.SOURCE_CHRONOFLUX.get();
+            return stack.getFluid() == ModFluids.SOURCE_CHRONORESIN.get();
         }
     };
 
@@ -179,17 +179,16 @@ public class ChronoresinFabricatorBlockEntity extends BlockEntity implements Men
     }
 
     private void craftItem() {
-        ItemStack inputStack = this.itemHandler.getStackInSlot(INPUT_SLOT);
-        if (inputStack.isEmpty()) return;
+        ItemStack templateStack = this.itemHandler.getStackInSlot(INPUT_SLOT);
+        int requiredFluid = calculateFluidAmount(templateStack);
 
-        int fluidAmount = calculateFluidAmount(inputStack);
+        // Drain fluid from tank
+        FluidStack drained = fluidTank.drain(requiredFluid, IFluidHandler.FluidAction.EXECUTE);
 
-        // Add fluid to tank
-        FluidStack fluidStack = new FluidStack(ModFluids.SOURCE_CHRONOFLUX.get(), fluidAmount);
-        fluidTank.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
-
-        // Remove the input item
-        this.itemHandler.extractItem(INPUT_SLOT, 1, false);
+        // Create duplicate in output slot
+        ItemStack duplicate = templateStack.copy();
+        duplicate.setCount(1);
+        this.itemHandler.insertItem(OUTPUT_SLOT, duplicate, false);
     }
 
     private int calculateFluidAmount(ItemStack stack) {
@@ -226,21 +225,19 @@ public class ChronoresinFabricatorBlockEntity extends BlockEntity implements Men
     }
 
     private boolean hasRecipe() {
-        ItemStack inputStack = this.itemHandler.getStackInSlot(INPUT_SLOT);
+        ItemStack templateStack = this.itemHandler.getStackInSlot(INPUT_SLOT);
+        if (templateStack.isEmpty()) return false;
 
-        // Check if there's an item in the input slot
-        if (inputStack.isEmpty()) {
-            return false;
-        }
+        // Check if there's enough Chronoresin
+        int requiredFluid = calculateFluidAmount(templateStack);
+        if (fluidTank.getFluidAmount() < requiredFluid) return false;
+        if (fluidTank.getFluid().getFluid() != ModFluids.SOURCE_CHRONORESIN.get()) return false;
 
-        // Calculate how much fluid this item would produce
-        int fluidAmount = calculateFluidAmount(inputStack);
+        // Check if output slot can accept the duplicate
+        ItemStack outputStack = this.itemHandler.getStackInSlot(OUTPUT_SLOT);
+        if (outputStack.isEmpty()) return true;
 
-        // Check if we have space in the tank
-        FluidStack simulatedFluid = new FluidStack(ModFluids.SOURCE_CHRONOFLUX.get(), fluidAmount);
-        int fillAmount = fluidTank.fill(simulatedFluid, IFluidHandler.FluidAction.SIMULATE);
-
-        return fillAmount == fluidAmount;
+        return ItemStack.isSameItemSameTags(templateStack, outputStack) && outputStack.getCount() < outputStack.getMaxStackSize();
     }
 
     public FluidTank getFluidTank() {
