@@ -26,7 +26,7 @@ public class ChronoresinFabricatorMenu extends AbstractContainerMenu {
 
     public ChronoresinFabricatorMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.ITEM_BURNER_MENU.get(), pContainerId);
-        checkContainerSize(inv, 1);
+        checkContainerSize(inv, 2);
         blockEntity = ((ChronoresinFabricatorBlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;
@@ -36,6 +36,7 @@ public class ChronoresinFabricatorMenu extends AbstractContainerMenu {
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
             this.addSlot(new SlotItemHandler(iItemHandler, 0, 56, 17));
+            this.addSlot(new SlotItemHandler(iItemHandler, 1, 116, 35));
         });
 
         addDataSlots(data);
@@ -62,7 +63,7 @@ public class ChronoresinFabricatorMenu extends AbstractContainerMenu {
             }
             int amount = this.data.get(2);
             if (amount > 0) {
-                return new FluidStack(ModFluids.SOURCE_CHRONOFLUX.get(), amount);
+                return new FluidStack(ModFluids.SOURCE_CHRONORESIN.get(), amount);
             }
             return FluidStack.EMPTY;
         }
@@ -94,7 +95,7 @@ public class ChronoresinFabricatorMenu extends AbstractContainerMenu {
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
-    private static final int TE_INVENTORY_SLOT_COUNT = 1; // Number of block's slots
+    private static final int TE_INVENTORY_SLOT_COUNT = 2; // Number of block's slots
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
