@@ -75,6 +75,6 @@ public class ChronoresinFabricatorBlock extends BaseEntityBlock {
             return null;
         }
 
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.ITEM_BURNER_BE.get(), (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.CHRONORESIN_FABRICATOR_BE.get(), (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }
 }

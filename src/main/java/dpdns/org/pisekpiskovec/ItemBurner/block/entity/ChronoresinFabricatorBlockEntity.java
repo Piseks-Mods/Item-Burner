@@ -68,7 +68,7 @@ public class ChronoresinFabricatorBlockEntity extends BlockEntity implements Men
     private int fluidAmount = 0;
 
     public ChronoresinFabricatorBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.ITEM_BURNER_BE.get(), pPos, pBlockState);
+        super(ModBlockEntities.CHRONORESIN_FABRICATOR_BE.get(), pPos, pBlockState);
 
         this.data = new ContainerData() {
             @Override

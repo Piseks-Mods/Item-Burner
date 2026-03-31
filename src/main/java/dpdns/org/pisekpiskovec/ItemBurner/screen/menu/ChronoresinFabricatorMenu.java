@@ -131,7 +131,7 @@ public class ChronoresinFabricatorMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, ModBlocks.BURNER.get());
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, ModBlocks.FABRICATOR.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
