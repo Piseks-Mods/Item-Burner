@@ -25,7 +25,7 @@ public class ChronoresinFabricatorMenu extends AbstractContainerMenu {
     }
 
     public ChronoresinFabricatorMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.ITEM_BURNER_MENU.get(), pContainerId);
+        super(ModMenuTypes.CHRONORESIN_FABRICATOR_MENU.get(), pContainerId);
         checkContainerSize(inv, 2);
         blockEntity = ((ChronoresinFabricatorBlockEntity) entity);
         this.level = inv.player.level();
