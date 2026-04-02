@@ -39,6 +39,28 @@ public class ChronoresinFabricatorBlockEntity extends BlockEntity implements Men
         protected void onContentsChanged(int slot) {
             setChanged();
         }
+
+        @Override
+        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            if (slot == INPUT_SLOT) { // Limit input slot to 1 item only
+                if (getStackInSlot(slot).isEmpty()) { // If slot is empty, insert 1 item
+                    ItemStack singleItem = stack.copy();
+                    singleItem.setCount(1);
+                    ItemStack remainder = stack.copy();
+                    remainder.shrink(1);
+                    if (!simulate) setStackInSlot(slot, singleItem);
+                    return remainder;
+                }
+                return stack; // If slot isn't empty, do nothing
+            }
+            return super.insertItem(slot, stack, simulate); // Other slots works normally
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            if (slot == INPUT_SLOT) return 1;
+            return super.getSlotLimit(slot);
+        }
     };
 
     private static final int INPUT_SLOT = 0;
