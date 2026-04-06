@@ -15,11 +15,11 @@ import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 
 public class ChronoresinFabricatorScreen extends AbstractContainerScreen<ChronoresinFabricatorMenu> {
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(ItemBurner.MOD_ID, "textures/gui/burner.png");
-    private static final int FLUID_TANK_X = 112; // X position relative to GUI
-    private static final int FLUID_TANK_Y = 17; // Y position relative to GUI
-    private static final int FLUID_TANK_WIDTH = 24;
-    private static final int FLUID_TANK_HEIGHT = 52;
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(ItemBurner.MOD_ID, "textures/gui/fabricator.png");
+    private static final int FLUID_TANK_X = 56; // X position relative to GUI
+    private static final int FLUID_TANK_Y = 53; // Y position relative to GUI
+    private static final int FLUID_TANK_WIDTH = 16;
+    private static final int FLUID_TANK_HEIGHT = 16;
 
     public ChronoresinFabricatorScreen(ChronoresinFabricatorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -41,19 +41,12 @@ public class ChronoresinFabricatorScreen extends AbstractContainerScreen<Chronor
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
         renderProgressArrow(guiGraphics, x, y);
-        renderBurning(guiGraphics, x, y);
         renderFluidTank(guiGraphics, x, y);
     }
 
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
         if (menu.isCrafting()) {
-            guiGraphics.blit(TEXTURE, x + 79, y + 35, 176, 14, menu.getScaledProgress(), 17);
-        }
-    }
-
-    private void renderBurning(GuiGraphics guiGraphics, int x, int y) {
-        if (menu.isCrafting()) {
-            guiGraphics.blit(TEXTURE, x + 57, y + 37, 176, 0, 14, 14);
+            guiGraphics.blit(TEXTURE, x + 40, y + 29, 176, 0, 12, menu.getScaledProgress());
         }
     }
 

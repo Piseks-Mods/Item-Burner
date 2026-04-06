@@ -49,9 +49,9 @@ public class ChronoresinFabricatorMenu extends AbstractContainerMenu {
     public int getScaledProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
-        int progressArrowSize = 24; // Width in pixel of arrow
+        int progressArrowSize = 29; // Height in pixel of bubbles
 
-        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+        return maxProgress != 0 && progress != 0 ? (progressArrowSize - (progress * progressArrowSize / maxProgress)) : 0;
     }
 
     public FluidStack getFluidStack() {
