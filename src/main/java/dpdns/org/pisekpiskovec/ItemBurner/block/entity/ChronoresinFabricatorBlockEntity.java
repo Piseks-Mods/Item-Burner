@@ -65,7 +65,7 @@ public class ChronoresinFabricatorBlockEntity extends BlockEntity implements Men
 
     private static final int INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
-    public static final int FLUID_TANK_CAPACITY = 10000; // 10 buckets
+    public static final int FLUID_TANK_CAPACITY = 1000; // 1 bucket
     public static int CONFIGURED_SLOT_OUTPUT = ModConfig.COMMON.maxBurnStack.get();
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
