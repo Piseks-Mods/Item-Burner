@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "itemburner:block/fabricator",
+      "y": 90
+    },
+    "facing=north": {
       "model": "itemburner:block/fabricator"
+    },
+    "facing=south": {
+      "model": "itemburner:block/fabricator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "itemburner:block/fabricator",
+      "y": 270
     }
   }
 }
