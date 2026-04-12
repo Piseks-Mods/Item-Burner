@@ -180,6 +180,15 @@ public class ChronoresinFabricatorBlockEntity extends BlockEntity implements Men
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
+        if (!pLevel.isClientSide()) {
+            // Try to pump fluid from block below
+            pumpFromBelow(pLevel, pPos);
+
+            // Sync fluid amount to client
+            this.fluidAmount = this.fluidTank.getFluidAmount();
+            setChanged();
+        }
+
         if (hasRecipe()) {
             increaseCraftingProgress();
             setChanged(pLevel, pPos, pState);
@@ -194,6 +203,25 @@ public class ChronoresinFabricatorBlockEntity extends BlockEntity implements Men
 
         // Sync fluid amount to client
         this.fluidAmount = this.fluidTank.getFluidAmount();
+    }
+
+    private void pumpFromBelow(Level pLevel, BlockPos pPos) {
+        BlockPos belowPos = pPos.below();
+        BlockEntity belowEntity = pLevel.getBlockEntity(belowPos);
+
+        if (belowEntity != null) {
+            belowEntity.getCapability(ForgeCapabilities.FLUID_HANDLER, Direction.UP).ifPresent(handler -> {
+                // Try to drain 10 mB from below
+                FluidStack drained = handler.drain(10, IFluidHandler.FluidAction.SIMULATE);
+                if (!drained.isEmpty() && drained.getFluid() == ModFluids.SOURCE_CHRONORESIN.get()) {
+                    int filled = fluidTank.fill(drained, IFluidHandler.FluidAction.SIMULATE);
+                    if (filled > 0) {
+                        FluidStack actualDrained = handler.drain(filled, IFluidHandler.FluidAction.EXECUTE);
+                        fluidTank.fill(actualDrained, IFluidHandler.FluidAction.EXECUTE);
+                    }
+                }
+            });
+        }
     }
 
     private void resetProgress() {
