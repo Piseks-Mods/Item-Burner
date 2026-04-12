@@ -2,6 +2,7 @@
   "values": [
     "itemburner:burner",
     "itemburner:valve",
-    "itemburner:centrifuge"
+    "itemburner:centrifuge",
+    "itemburner:fabricator"
   ]
 }
