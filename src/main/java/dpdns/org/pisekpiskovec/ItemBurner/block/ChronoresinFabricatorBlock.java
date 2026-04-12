@@ -2,8 +2,10 @@ package dpdns.org.pisekpiskovec.ItemBurner.block;
 
 import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ChronoresinFabricatorBlockEntity;
 import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ModBlockEntities;
+import dpdns.org.pisekpiskovec.ItemBurner.config.ModConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -50,8 +52,14 @@ public class ChronoresinFabricatorBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof ChronoresinFabricatorBlockEntity) {
-                ((ChronoresinFabricatorBlockEntity) blockEntity).drops();
+            if (blockEntity instanceof ChronoresinFabricatorBlockEntity fabricator) {
+                fabricator.drops();
+
+                int chronoresinAmount = fabricator.getFluidTank().getFluidAmount();
+                int xpToDrop = (chronoresinAmount * ModConfig.COMMON.chronofluxToChronoresin.get()) / ModConfig.COMMON.chronoresinProduced.get();
+                if (xpToDrop > 0 && !pLevel.isClientSide()) {
+                    popExperience((ServerLevel) pLevel, pPos, xpToDrop);
+                }
             }
         }
 

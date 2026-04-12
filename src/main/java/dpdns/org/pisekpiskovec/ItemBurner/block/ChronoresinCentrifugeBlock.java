@@ -2,7 +2,9 @@ package dpdns.org.pisekpiskovec.ItemBurner.block;
 
 import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ChronoresinCentrifugeBlockEntity;
 import dpdns.org.pisekpiskovec.ItemBurner.block.entity.ModBlockEntities;
+import dpdns.org.pisekpiskovec.ItemBurner.config.ModConfig;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -52,8 +54,16 @@ public class ChronoresinCentrifugeBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof ChronoresinCentrifugeBlockEntity) {
-                ((ChronoresinCentrifugeBlockEntity) blockEntity).drops();
+            if (blockEntity instanceof ChronoresinCentrifugeBlockEntity centrifuge) {
+                centrifuge.drops();
+
+                int chronofluxAmount = centrifuge.getChronofluxTank().getFluidAmount();
+                int chronoresinAmount = centrifuge.getChronoresinTank().getFluidAmount();
+                int xpToDrop = chronofluxAmount;
+                xpToDrop += (chronoresinAmount * ModConfig.COMMON.chronofluxToChronoresin.get()) / ModConfig.COMMON.chronoresinProduced.get();
+                if (xpToDrop > 0 && !pLevel.isClientSide()) {
+                    popExperience((ServerLevel) pLevel, pPos, xpToDrop);
+                }
             }
         }
 
