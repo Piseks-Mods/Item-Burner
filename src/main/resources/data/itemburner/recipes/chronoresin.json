@@ -1,0 +1,15 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "amount": 10,
+      "fluid": "itemburner:chronoflux_source"
+    }
+  ],
+  "results": [
+    {
+      "amount": 1,
+      "fluid": "itemburner:chronoresin_source"
+    }
+  ]
+}
