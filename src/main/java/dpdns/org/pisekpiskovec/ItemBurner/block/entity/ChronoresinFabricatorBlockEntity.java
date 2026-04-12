@@ -154,7 +154,7 @@ public class ChronoresinFabricatorBlockEntity extends BlockEntity implements Men
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.itemburner.burner");
+        return Component.translatable("block.itemburner.fabricator");
     }
 
     @Override
